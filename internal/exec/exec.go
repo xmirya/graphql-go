@@ -7,15 +7,15 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/graph-gophers/graphql-go/errors"
-	"github.com/graph-gophers/graphql-go/internal/common"
-	"github.com/graph-gophers/graphql-go/internal/exec/resolvable"
-	"github.com/graph-gophers/graphql-go/internal/exec/selected"
-	"github.com/graph-gophers/graphql-go/internal/query"
-	"github.com/graph-gophers/graphql-go/internal/schema"
-	"github.com/graph-gophers/graphql-go/log"
-	pubselected "github.com/graph-gophers/graphql-go/selected"
-	"github.com/graph-gophers/graphql-go/trace"
+	"github.com/xmirya/graphql-go/errors"
+	"github.com/xmirya/graphql-go/internal/common"
+	"github.com/xmirya/graphql-go/internal/exec/resolvable"
+	"github.com/xmirya/graphql-go/internal/exec/selected"
+	"github.com/xmirya/graphql-go/internal/query"
+	"github.com/xmirya/graphql-go/internal/schema"
+	"github.com/xmirya/graphql-go/log"
+	pubselected "github.com/xmirya/graphql-go/selected"
+	"github.com/xmirya/graphql-go/trace"
 )
 
 type Request struct {
