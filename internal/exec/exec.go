@@ -153,6 +153,7 @@ func selectionToSelectedFields(sels []selected.Selection) []pubselected.Selected
 			if ok {
 				selectedFields = append(selectedFields, pubselected.SelectedField{
 					Name:     selField.Field.Name,
+					Args:     selField.Args,
 					Selected: selectionToSelectedFields(selField.Sels),
 				})
 			}
