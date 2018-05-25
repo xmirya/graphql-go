@@ -153,6 +153,7 @@ func selectionToSelectedFields(sels []selected.Selection) []pubselected.Selected
 			if ok {
 				selectedFields = append(selectedFields, pubselected.SelectedField{
 					Name:     selField.Field.Name,
+					Args:     selField.Args,
 					Selected: selectionToSelectedFields(selField.Sels),
 				})
 			}
@@ -201,6 +202,9 @@ func execFieldSelection(ctx context.Context, r *Request, f *fieldToExec, path *p
 		}
 		if f.field.HasSelected {
 			in = append(in, reflect.ValueOf(selectionToSelectedFields(f.sels)))
+		}
+		if f.field.HasArgsMap {
+			in = append(in, reflect.ValueOf(f.field.Args))
 		}
 		callOut := f.resolver.Method(f.field.MethodIndex).Call(in)
 		result = callOut[0]
