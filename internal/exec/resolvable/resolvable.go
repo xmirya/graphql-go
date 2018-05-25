@@ -36,6 +36,7 @@ type Field struct {
 	HasContext  bool
 	HasError    bool
 	HasSelected bool
+	HasArgsMap  bool
 	ArgsPacker  *packer.StructPacker
 	ValueExec   Resolvable
 	TraceLabel  string
@@ -288,6 +289,15 @@ func (b *execBuilder) makeFieldExec(typeName string, f *schema.Field, m reflect.
 		in = in[1:]
 	}
 
+	hasArgsMap := len(in) > 0 && reflect.ValueOf(in[0]).Kind() == reflect.Ptr
+	if len(in) > 0 {
+		println("argsmap type", reflect.ValueOf(in[0]).Kind() == reflect.Ptr)
+	}
+	if hasArgsMap {
+		println("has-ing argsmap")
+		in = in[1:]
+	}
+
 	if len(in) > 0 {
 		return nil, fmt.Errorf("too many parameters")
 	}
@@ -309,6 +319,7 @@ func (b *execBuilder) makeFieldExec(typeName string, f *schema.Field, m reflect.
 		MethodIndex: methodIndex,
 		HasContext:  hasContext,
 		HasSelected: hasSelected,
+		HasArgsMap:  hasArgsMap,
 		ArgsPacker:  argsPacker,
 		HasError:    hasError,
 		TraceLabel:  fmt.Sprintf("GraphQL field: %s.%s", typeName, f.Name),
